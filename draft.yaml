@@ -1,0 +1,11 @@
+models:
+  Post:
+    user_id: foreign
+    title: string:400
+    slug: string:800
+    body: string
+    published_at: timestamp nullable
+    relationsships:
+      belongsTo: User
+
+
