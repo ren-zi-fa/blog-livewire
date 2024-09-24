@@ -4,14 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Post extends Model
 {
-    use HasFactory, Notifiable,HasRoles;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -19,19 +17,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'email_verified_at',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
+        'user_id',
+        'title',
+        'slug',
+        'body',
+        'published_at',
     ];
 
     /**
@@ -41,12 +31,13 @@ class User extends Authenticatable
      */
     protected $casts = [
         'id' => 'integer',
-        'email_verified_at' => 'timestamp',
+        'user_id' => 'integer',
+        'published_at' => 'timestamp',
     ];
 
-    public function posts(): HasMany
+    public function user(): BelongsTo
     {
-        return $this->hasMany(Post::class);
+        return $this->belongsTo(User::class);
     }
 
     public function comments(): HasMany

@@ -32,7 +32,14 @@ class PermissionAndRoleSeeder extends Seeder
         $role->givePermissionTo('store articles');
         $role->givePermissionTo('get articles');
         
+        $guest = Role::where('name','guest')->first();
+        $guest->givePermissionTo('get articles');
+        
         $admin = User::where('name','renzi')->first();
         $admin->assignRole('admin');
+
+        $guest = User::where('name','user')->first();
+        $guest->assignRole('guest');
+
     }
 }

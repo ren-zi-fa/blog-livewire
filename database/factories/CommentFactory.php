@@ -4,16 +4,18 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
 
-class UserFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = Comment::class;
 
     /**
      * Define the model's default state.
@@ -21,10 +23,10 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->safeEmail(),
-            'email_verified_at' => $this->faker->dateTime(),
-            'password' => $this->faker->password(),
+            'user_id' => User::factory(),
+            'comment' => $this->faker->text(),
+            'published_at' => $this->faker->dateTime(),
+            'post_id' => Post::factory(),
         ];
     }
 }

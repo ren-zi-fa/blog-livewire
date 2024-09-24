@@ -1,11 +1,26 @@
 models:
+  User: 
+    name: string
+    email: unique
+    email_verified_at: timestamp nullable
+    password: string
+    relationships:
+      hasMany: Post, Comment
   Post:
     user_id: foreign
     title: string:400
     slug: string:800
     body: string
     published_at: timestamp nullable
-    relationsships:
-      belongsTo: \Spatie\LaravelPermission\Models\Role
+    relationships:
+      belongsTo: User
+      hasMany: Comment
+  Comment:
+    user_id: foreign
+    comment: text
+    published_at: timestamp
+    relationships:
+      belongsTo: Post, User
 
+seeders: User, Post, Comment
 

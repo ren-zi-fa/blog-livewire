@@ -1,2 +1,17 @@
+created:
+    - database/factories/UserFactory.php
+    - database/factories/PostFactory.php
+    - database/factories/CommentFactory.php
+    - database/migrations/2024_09_24_081407_create_users_table.php
+    - database/migrations/2024_09_24_081408_create_posts_table.php
+    - database/migrations/2024_09_24_081409_create_comments_table.php
+    - app/Models/User.php
+    - app/Models/Post.php
+    - app/Models/Comment.php
+    - database/seeders/UserSeeder.php
+    - database/seeders/PostSeeder.php
+    - database/seeders/CommentSeeder.php
 models:
-    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
+    User: { name: string, email: unique, email_verified_at: 'timestamp nullable', password: string, relationships: { hasMany: 'Post, Comment' } }
+    Post: { user_id: foreign, title: 'string:400', slug: 'string:800', body: string, published_at: 'timestamp nullable', relationships: { belongsTo: User, hasMany: Comment } }
+    Comment: { user_id: foreign, comment: text, published_at: timestamp, relationships: { belongsTo: 'Post, User' } }
