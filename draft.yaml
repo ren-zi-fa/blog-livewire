@@ -6,6 +6,6 @@ models:
     body: string
     published_at: timestamp nullable
     relationsships:
-      belongsTo: User
+      belongsTo: \Spatie\LaravelPermission\Models\Role
 
 
