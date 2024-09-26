@@ -3,20 +3,18 @@
 namespace App\Livewire\Forms;
 
 use Livewire\Attributes\Rule;
-
 use Livewire\Form;
 
 class PostForm extends Form
 {
-
-    #[Rule(['required','string','min:3', 'max:200'])]
-    public  $title;
+    #[Rule(['required', 'string', 'min:3', 'max:200'])]
+    public $title;
 
     #[Rule(['required'])]
-    public  $slug;
+    public $slug;
 
-    #[Rule(['required','min:3'])]
-    public  $body;
+    #[Rule(['required', 'min:3'])]
+    public $body;
 
     public function store(): void
     {
