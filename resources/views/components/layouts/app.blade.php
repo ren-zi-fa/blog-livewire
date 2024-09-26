@@ -10,8 +10,15 @@
 </head>
 
 <body>
-    <x-navbar-menu />
-    {{ $slot }}
+
+    <div class="min-h-screen bg-gray-100  place-content-center items-center">
+        <x-navbar-menu />
+
+        <!-- Page Content -->
+        <main>
+            {{ $slot }}
+        </main>
+    </div>
 
 </body>
 

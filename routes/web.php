@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', \App\Livewire\Home::class)->name('home');
 Route::get('/about',\App\Livewire\About::class)->name('about');
+Route::get('/post',\App\Livewire\Post\Index::class)->name('post');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
