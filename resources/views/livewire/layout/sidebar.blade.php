@@ -69,17 +69,15 @@ new class extends Component
                         </svg>
                     </button>
                     <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                        <x-navbar-link :active="request()->routeIs('post')" href="{{route('post.create')}}">
+                        <x-sidebar-link :active="request()->routeIs('post.create')" href="{{route('post.create')}}">
                             {{ __('Create Post') }}
-                        </x-navbar-link>
-                        <li>
-                            <a href="#"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Billing</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Invoice</a>
-                        </li>
+                        </x-sidebar-link>
+                        <x-sidebar-link :active="request()->routeIs('user.index')" href="{{route('user.index')}}">
+                            {{ __('Manage User') }}
+                        </x-sidebar-link>
+                        
+                     
+                    
                     </ul>
                 </li>
                 <li>

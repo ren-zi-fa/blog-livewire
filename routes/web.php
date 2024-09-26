@@ -18,6 +18,9 @@ Route::view('profile', 'profile')
 Route::get('/create-post', function () {
     return view('post.create');
 })->name('post.create');
+Route::get('/all-user', function () {
+    return view('user.index');
+})->name('user.index');
 
 Route::get('/user/{user}', \App\Livewire\User\Show::class)->name('show');
 require __DIR__ . '/auth.php';
