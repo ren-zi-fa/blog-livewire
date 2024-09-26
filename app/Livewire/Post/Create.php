@@ -3,29 +3,19 @@
 namespace App\Livewire\Post;
 
 
-use Livewire\Attributes\Rule;
+
 use Livewire\Component;
 
 class Create extends Component
 {
 
-    #[Rule(['required'])]
-    public string $title;
-
-    #[Rule(['required'])]
-    public string $slug;
-
-    #[Rule(['required'])]
-    public string $body;
+    public \App\Livewire\Forms\PostForm $form;
 
 
-    public function store()
+    public function save():void
     {
-        $user = auth()->user();
-        $validated = $this->validate();
-        $user->posts()->create($validated);
-        $this->reset(); 
-
+       
+        $this->form->store();
         session()->flash('status', 'Post successfully created.');
  
     }

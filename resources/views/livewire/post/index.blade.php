@@ -1,3 +1,3 @@
 <div class="">
-    <livewire:post.create />
+  Index
 </div>
