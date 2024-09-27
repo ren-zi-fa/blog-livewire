@@ -7,10 +7,11 @@ use Livewire\Component;
 
 class UserTable extends Component
 {
+
+    public User $user;
     public function render()
     {
-        $users = User::with('roles')->get();
-
-        return view('livewire.user.user-table', compact('users'));
+       
+        return view('livewire.user.user-table');
     }
 }

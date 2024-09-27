@@ -1,21 +1,3 @@
-<?php
-
-use App\Livewire\Actions\Logout;
-use Livewire\Volt\Component;
-
-new class extends Component
-{
-    /**
-     * Log the current user out of the application.
-     */
-    public function logout(Logout $logout): void
-    {
-        $logout();
-
-        $this->redirect('/', navigate: true);
-    }
-}; ?>
-
 <nav x-init="initFlowbite();">
     <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar"
         aria-controls="sidebar-multi-level-sidebar" type="button"
@@ -36,10 +18,12 @@ new class extends Component
             <ul class="space-y-2 font-medium">
                 <li>
                     <x-sidebar-link :active="request()->routeIs('home')" href="{{route('home')}}">
-                        <svg class="w-6 h-6  text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
-                          </svg>
-                          
+                        <svg class="w-6 h-6  text-gray-800 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 12h14M5 12l4-4m-4 4 4 4" />
+                        </svg>
+
                         {{ __('See your web') }}
                     </x-sidebar-link>
                 </li>
@@ -84,9 +68,6 @@ new class extends Component
                         <x-sidebar-link :active="request()->routeIs('user.index')" href="{{route('user.index')}}">
                             {{ __('Manage User') }}
                         </x-sidebar-link>
-                        
-                     
-                    
                     </ul>
                 </li>
                 <li>
@@ -103,16 +84,11 @@ new class extends Component
                     </a>
                 </li>
                 <li>
-                    <button wire:click="logout" class="w-full fixed bottom-4 flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ">
-                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2" />
-                        </svg>
+                    <div
+                        class="fixed bottom-4 text-gray-200  bg-red-700 rounded-lg dark:text-white hover:bg-red-500 dark:hover:bg-gray-700 group">
+                        <livewire:pages.auth.logout />
 
-                        {{ __('Log Out') }}
-                </button>
-
+                    </div>
                 </li>
             </ul>
         </div>
