@@ -9,15 +9,15 @@ use Livewire\Component;
 class Index extends Component
 {
     #[On('userCreated')]
+    #[On('userDeleted')]
 
-    public function updateList($user) 
-    {
-        
-    }
+    public function updateList($user) {}
+    use \Livewire\WithPagination;
     public function render()
     {
+        $users =  User::with('roles')->paginate(5);
         return view('livewire.user.index', [
-            'users' => User::with('roles')->get()
+            'users' => $users
         ]);
     }
 }

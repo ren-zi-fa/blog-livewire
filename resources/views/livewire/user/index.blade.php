@@ -6,8 +6,9 @@
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
         <tr>
+
           <th scope="col" class="px-6 py-3">
-            Id
+            UUID
           </th>
           <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
             Username
@@ -18,6 +19,9 @@
           <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
             Role
           </th>
+          <th scope="col" class="px-6 py-3">
+           Action
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -27,4 +31,8 @@
       </tbody>
     </table>
   </div>
+<div class="mt-4">
+  {{ $users->links('vendor.pagination.tailwind') }}
+
+</div>
 </div>

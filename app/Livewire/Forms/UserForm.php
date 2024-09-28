@@ -33,4 +33,8 @@ class UserForm extends Form
 
         return $user;
     }
+    public function delete()
+    {
+        
+    }
 }

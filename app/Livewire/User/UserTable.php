@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class UserTable extends Component
 {
+   
 
     public User $user;
     public function render()

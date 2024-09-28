@@ -1,5 +1,5 @@
 <tr class="border-b border-gray-200 dark:border-gray-700">
-    <td class="px-6 py-4">
+    <td class="px-6 py-4" wire:key='{{$user->uuid}}'>
         {{$user->uuid}}
     </td>
     <th scope="row"
@@ -13,5 +13,8 @@
         @foreach ($user->roles as $role)
         {{ $role->name }}
         @endforeach
+    </td>
+    <td class="px-6 py-4">
+            <livewire:user.delete-user :userUuid="$user->uuid" />
     </td>
 </tr>

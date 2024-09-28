@@ -9,6 +9,7 @@ use Livewire\Component;
 #[Lazy()]
 class Index extends Component
 {
+  
 
     public function placeholder()
     {
@@ -16,10 +17,6 @@ class Index extends Component
     }
     public function render()
     {
-        sleep(2);
-        return view(
-            'livewire.post.index',
-            ['posts' => Post::get()]
-        );
+        return view('livewire.post.index', ['posts' => Post::get()]);
     }
 }
