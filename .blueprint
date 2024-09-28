@@ -2,9 +2,9 @@ created:
     - database/factories/UserFactory.php
     - database/factories/PostFactory.php
     - database/factories/CommentFactory.php
-    - database/migrations/2024_09_24_081407_create_users_table.php
-    - database/migrations/2024_09_24_081408_create_posts_table.php
-    - database/migrations/2024_09_24_081409_create_comments_table.php
+    - database/migrations/2024_09_27_171102_create_users_table.php
+    - database/migrations/2024_09_27_171103_create_posts_table.php
+    - database/migrations/2024_09_27_171104_create_comments_table.php
     - app/Models/User.php
     - app/Models/Post.php
     - app/Models/Comment.php
@@ -12,6 +12,6 @@ created:
     - database/seeders/PostSeeder.php
     - database/seeders/CommentSeeder.php
 models:
-    User: { name: string, email: unique, email_verified_at: 'timestamp nullable', password: string, relationships: { hasMany: 'Post, Comment' } }
-    Post: { user_id: foreign, title: 'string:400', slug: 'string:800', body: string, published_at: 'timestamp nullable', relationships: { belongsTo: User, hasMany: Comment } }
-    Comment: { user_id: foreign, comment: text, published_at: timestamp, relationships: { belongsTo: 'Post, User' } }
+    User: { uuid: 'uuid primary', name: string, email: unique, email_verified_at: 'timestamp nullable', password: string, relationships: { hasMany: 'Post, Comment' } }
+    Post: { uuid: 'uuid primary', user_id: 'foreignUuid:users', title: 'string:400', slug: 'string:800', body: text, published_at: 'timestamp nullable', relationships: { belongsTo: User, hasMany: Comment } }
+    Comment: { uuid: 'uuid primary', user_id: 'foreignUuid:users', post_id: 'foreignUuid:posts', comment: text, published_at: timestamp, relationships: { belongsTo: 'Post, User' } }

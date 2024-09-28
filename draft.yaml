@@ -1,5 +1,6 @@
 models:
-  User: 
+  User:
+    uuid: uuid primary
     name: string
     email: unique
     email_verified_at: timestamp nullable
@@ -7,20 +8,22 @@ models:
     relationships:
       hasMany: Post, Comment
   Post:
-    user_id: foreign
+    uuid: uuid primary
+    user_id: foreignUuid:users
     title: string:400
     slug: string:800
-    body: string
+    body: text
     published_at: timestamp nullable
     relationships:
       belongsTo: User
       hasMany: Comment
   Comment:
-    user_id: foreign
+    uuid: uuid primary
+    user_id: foreignUuid:users
+    post_id: foreignUuid:posts
     comment: text
     published_at: timestamp
     relationships:
       belongsTo: Post, User
 
-seeders: User, Post, Comment
-
+seeders: User,Post,Comment

@@ -2,22 +2,28 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, HasRoles,Notifiable;
+    use HasFactory,HasUuids,HasRoles;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+    protected $primaryKey = 'uuid';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    
     protected $fillable = [
+        'uuid',
         'name',
         'email',
         'email_verified_at',
@@ -31,6 +37,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
     /**
@@ -39,7 +46,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
         'email_verified_at' => 'timestamp',
     ];
 

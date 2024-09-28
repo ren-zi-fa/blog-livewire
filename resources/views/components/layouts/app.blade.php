@@ -11,12 +11,14 @@
 
 <body>
 
-    <div class="min-h-screen bg-gray-100  place-content-center items-center">
+    <div class="min-h-screen bg-gray-100  items-center">
         <x-navbar-menu />
 
         <!-- Page Content -->
         <main>
-            {{ $slot }}
+            <div class="p-4 sm:mt-16">
+                    {{ $slot }}
+            </div>
         </main>
     </div>
 

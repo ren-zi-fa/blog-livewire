@@ -1,16 +1,14 @@
 import 'flowbite';
 import './bootstrap';
 
-
-function initializeComponents() {
+document.addEventListener('livewire:navigated', () => {
     try {
-        initFlowbite(); 
+        initFlowbite();
     } catch (error) {
-        console.error("Error in initializing components: ", error);
+        console.error("Error in initializing Flowbite: ", error);
     }
-}
+});
 
-document.addEventListener('livewire:navigated', initializeComponents);
 
 // document.addEventListener('livewire:init', initializeComponents);
 // document.addEventListener('livewire:load', initializeComponents);

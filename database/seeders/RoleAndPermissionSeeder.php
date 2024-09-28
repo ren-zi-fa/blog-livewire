@@ -2,12 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
 
-class PermissionAndRoleSeeder extends Seeder
+class RoleAndPermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,14 +17,14 @@ class PermissionAndRoleSeeder extends Seeder
     public function run(): void
     {
         Role::insert([
-            ['name' => 'admin', 'guard_name' => 'web'],
-            ['name' => 'guest', 'guard_name' => 'web'],
+            ['uuid' => Str::uuid(), 'name' => 'admin', 'guard_name' => 'web'],
+            ['uuid' => Str::uuid(), 'name' => 'guest', 'guard_name' => 'web'],
         ]);
         Permission::insert([
-            ['name' => 'edit articles', 'guard_name' => 'web'],
-            ['name' => 'delete articles', 'guard_name' => 'web'],
-            ['name' => 'store articles', 'guard_name' => 'web'],
-            ['name' => 'get articles', 'guard_name' => 'web'],
+            ['uuid' => Str::uuid(), 'name' => 'edit articles', 'guard_name' => 'web'],
+            ['uuid' => Str::uuid(), 'name' => 'delete articles', 'guard_name' => 'web'],
+            ['uuid' => Str::uuid(), 'name' => 'store articles', 'guard_name' => 'web'],
+            ['uuid' => Str::uuid(), 'name' => 'get articles', 'guard_name' => 'web'],
         ]);
 
         $role = Role::where('name', 'admin')->first();
@@ -39,6 +41,5 @@ class PermissionAndRoleSeeder extends Seeder
 
         $guest = User::where('name', 'user')->first();
         $guest->assignRole('guest');
-
     }
 }

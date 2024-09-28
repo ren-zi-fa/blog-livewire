@@ -22,7 +22,7 @@
       </thead>
       <tbody>
         @foreach ($users as $user)
-        <livewire:user.user-table :user="$user" wire:key="{{ $user->id }}">
+        <livewire:user.user-table :user="$user" wire:key="{{ $user->uuid }}">
           @endforeach
       </tbody>
     </table>

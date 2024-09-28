@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use App\Models\User;
 
 class UserFactory extends Factory
 {
@@ -20,6 +21,8 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+            'uuid' => $this->faker->uuid(),
+            'user_id' => User::factory(),
             'name' => $this->faker->name(),
             'email' => $this->faker->safeEmail(),
             'email_verified_at' => $this->faker->dateTime(),

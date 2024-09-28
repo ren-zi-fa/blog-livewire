@@ -53,8 +53,8 @@
                 <x-navbar-link :active="request()->routeIs('about')" href="{{route('about')}}">
                     {{ __('About') }}
                 </x-navbar-link>
-                <x-navbar-link :active="request()->routeIs('post.index')" href="{{route('post.index')}}">
-                    {{ __('Post') }}
+                <x-navbar-link :active="request()->routeIs('articles')" href="{{route('articles')}}">
+                    {{ __('Artikel') }}
                 </x-navbar-link>
             </ul>
         </div>
