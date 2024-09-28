@@ -20,7 +20,7 @@ class User extends Authenticatable
      */
     protected $primaryKey = 'uuid';
     public $incrementing = false;
-    protected $keyType = 'string';
+   
     
     protected $fillable = [
         'uuid',
@@ -48,14 +48,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'timestamp',
     ];
+    protected $keyType = 'string';
 
     public function posts(): HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class, 'user_id', 'uuid');
     }
 
     public function comments(): HasMany
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'user_id', 'uuid');
     }
 }

@@ -18,7 +18,6 @@ class Comment extends Model
      */
     protected $primaryKey = 'uuid';
     public $incrementing = false;
-    protected $keyType = 'string';
     
     protected $fillable = [
         'uuid',
@@ -27,12 +26,13 @@ class Comment extends Model
         'comment',
         'published_at',
     ];
-
+    
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
+    protected $keyType = 'string';
     protected $casts = [
         'id' => 'integer',
         'user_id' => 'integer',
@@ -42,11 +42,11 @@ class Comment extends Model
 
     public function post(): BelongsTo
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Post::class, 'post_id', 'uuid');
     }
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'uuid');
     }
 }
