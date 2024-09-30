@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -59,7 +59,7 @@ return new class extends Migration
             $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_permissions_model_id_model_type_index');
 
             $table->foreign($pivotPermission)
-            ->references('uuid') // permission id
+                ->references('uuid') // permission id
                 ->on($tableNames['permissions'])
                 ->onDelete('cascade');
             if ($teams) {
@@ -83,7 +83,7 @@ return new class extends Migration
             $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_roles_model_id_model_type_index');
 
             $table->foreign($pivotRole)
-            ->references('uuid') // role id
+                ->references('uuid') // role id
                 ->on($tableNames['roles'])
                 ->onDelete('cascade');
             if ($teams) {
@@ -103,12 +103,12 @@ return new class extends Migration
             $table->uuid($pivotRole);
 
             $table->foreign($pivotPermission)
-               ->references('uuid')  // permission id
+                ->references('uuid')  // permission id
                 ->on($tableNames['permissions'])
                 ->onDelete('cascade');
 
             $table->foreign($pivotRole)
-               ->references('uuid')  // role id
+                ->references('uuid')  // role id
                 ->on($tableNames['roles'])
                 ->onDelete('cascade');
 

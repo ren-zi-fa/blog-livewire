@@ -43,7 +43,8 @@
             </p> @enderror
         </div>
 
-        <button class="bg-blue-500 rounded-lg  px-4 py-2 mt-4" type="submit" wire:loading.class.remove="bg-blue-500">
+        <button class="bg-blue-500 rounded-lg  px-4 py-2 mt-4" type="submit" wire:loading.class='text-red-200'>
+         
             Save
         </button>
     </form>

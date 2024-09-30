@@ -18,8 +18,11 @@ class Post extends Model
      * @var array
      */
     protected $primaryKey = 'uuid';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
+
     protected $fillable = [
         'uuid',
         'user_id',

@@ -17,13 +17,13 @@ class AdminSeeder extends Seeder
         User::insert(
             [
                 [
-                    'uuid'=>Str::uuid(),
+                    'uuid' => Str::uuid(),
                     'name' => 'renzi',
                     'email' => 'admin@gmail.com',
                     'password' => Hash::make('12345678'),
                 ],
                 [
-                    'uuid'=>Str::uuid(),
+                    'uuid' => Str::uuid(),
                     'name' => 'user',
                     'email' => 'user@gmail.com',
                     'password' => Hash::make('12345678'),
@@ -32,5 +32,4 @@ class AdminSeeder extends Seeder
 
         );
     }
-   
 }

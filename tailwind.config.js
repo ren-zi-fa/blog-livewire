@@ -8,6 +8,8 @@ export default {
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
         "./node_modules/flowbite/**/*.js",
+        "./app/Livewire/**/*Table.php",
+
     ],
 
     theme: {

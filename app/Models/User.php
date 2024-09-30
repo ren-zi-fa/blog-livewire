@@ -4,24 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory,HasUuids,HasRoles;
+    use HasFactory, HasRoles, HasUuids;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+
+    protected $keyType = 'string';
     protected $primaryKey = 'uuid';
+
     public $incrementing = false;
-   
-    
+
     protected $fillable = [
         'uuid',
         'name',
@@ -42,13 +43,12 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be cast to native types.
-     *
+     *  
      * @var array
      */
     protected $casts = [
         'email_verified_at' => 'timestamp',
     ];
-    protected $keyType = 'string';
 
     public function posts(): HasMany
     {
@@ -59,4 +59,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class, 'user_id', 'uuid');
     }
+
+    public function scopeSearch($query, $value)
+    {
+        $query->when(!empty($value), function ($query) use ($value) {
+            return $query->where('name', 'like', '%' . $value . '%')
+                ->orWhere('email', 'like', '%' . $value . '%')
+                ->orWhereHas('roles', function ($roleQuery) use ($value) {
+                    $roleQuery->where('name', 'like', '%' . $value . '%');
+                });
+        });
+    }
+    
 }

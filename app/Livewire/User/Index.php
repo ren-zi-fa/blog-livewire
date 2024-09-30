@@ -3,21 +3,33 @@
 namespace App\Livewire\User;
 
 use App\Models\User;
-use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Index extends Component
 {
-    #[On('userCreated')]
-    #[On('userDeleted')]
 
-    public function updateList($user) {}
     use \Livewire\WithPagination;
+    public $perPage;
+    public $search = '';
+
+    public $sortDirection = 'ASC';
+    public $sortColumn = 'name';
+
+    public function doSort($column)
+    {
+        if ($this->sortColumn === $column) {
+            $this->sortDirection = ($this->sortDirection === 'ASC')
+                ? 'DESC' : 'ASC';
+            return;
+        }
+        $this->sortColumn = $column;
+    }
     public function render()
     {
-        $users =  User::with('roles')->paginate(5);
         return view('livewire.user.index', [
-            'users' => $users
+            'users' => User::search($this->search)->orderBy($this->sortColumn, $this->sortDirection)
+                ->with('roles')
+                ->paginate($this->perPage, ['*'], 'userPage'),
         ]);
     }
 }

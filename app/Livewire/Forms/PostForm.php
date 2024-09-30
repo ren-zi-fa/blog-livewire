@@ -19,11 +19,9 @@ class PostForm extends Form
     public function store(): void
     {
         $user = auth()->user();
-       
+
         $data = $this->validate();
-    
-       
-    
+
         $user->posts()->create($data);
         $this->reset();
     }

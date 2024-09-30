@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Rule;
 use Livewire\Form;
 
-
 class UserForm extends Form
 {
     #[Rule(['required', 'string', 'max:50'])]
@@ -16,10 +15,10 @@ class UserForm extends Form
     #[Rule(['required', 'email'])]
     public $email;
 
-    #[Rule(['required', 'string', 'min:8'])] 
+    #[Rule(['required', 'string', 'min:8'])]
     public $password;
 
-    #[Rule(['required', 'string'])] 
+    #[Rule(['required', 'string'])]
     public $role;
 
     public function store()
@@ -29,12 +28,9 @@ class UserForm extends Form
         $user = User::create($validatedData);
         $user->assignRole($this->role);
         $this->reset();
-     
 
         return $user;
     }
-    public function delete()
-    {
-        
-    }
+
+    public function delete() {}
 }

@@ -45,7 +45,7 @@
                 <li>
                     <button type="button"
                         class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                        aria-controls="dropdown-manage" data-collapse-toggle="dropdown-manage">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 24 24">
@@ -54,7 +54,32 @@
                                 clip-rule="evenodd" />
                         </svg>
 
-                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Post</span>
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Manage Post and User</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+                    <ul id="dropdown-manage" class="hidden py-2 space-y-2">
+                        <x-sidebar-link :active="request()->routeIs('post.create')" href="{{route('post.create')}}">
+                            {{ __('Create Post') }}
+                        </x-sidebar-link>
+                        <x-sidebar-link :active="request()->routeIs('user.create')" href="{{route('user.create')}}">
+                            {{ __('Create User') }}
+                        </x-sidebar-link>
+                    </ul>
+                </li>
+                <li>
+                    <button type="button"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-width="2"
+                                d="M3 11h18M3 15h18m-9-4v8m-8 0h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z" />
+                        </svg>
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Data Table</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -62,11 +87,11 @@
                         </svg>
                     </button>
                     <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                        <x-sidebar-link :active="request()->routeIs('post.create')" href="{{route('post.create')}}">
-                            {{ __('Create Post') }}
+                        <x-sidebar-link :active="request()->routeIs('posts.index')" href="{{route('posts.index')}}">
+                            {{ __('Data Posts') }}
                         </x-sidebar-link>
-                        <x-sidebar-link :active="request()->routeIs('user.index')" href="{{route('user.index')}}">
-                            {{ __('Manage User') }}
+                        <x-sidebar-link :active="request()->routeIs('users.index')" href="{{route('users.index')}}">
+                            {{ __('Data User') }}
                         </x-sidebar-link>
                     </ul>
                 </li>

@@ -17,14 +17,14 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => $this->faker->uuid(), 
-            'user_id' => \App\Models\User::factory()->create()->uuid, 
-            'title' => $this->faker->sentence(), 
+            'uuid' => $this->faker->uuid(),
+            'user_id' => \App\Models\User::factory()->create()->uuid,
+            'title' => $this->faker->sentence(),
             'slug' => Str::slug($this->faker->sentence()),
             'body' => $this->faker->paragraphs(3, true),
-            'published_at' => $this->faker->optional()->dateTime(), 
-            'created_at' => now(), 
-            'updated_at' => now(), 
+            'published_at' => $this->faker->optional()->dateTime(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

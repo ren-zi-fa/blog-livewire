@@ -17,8 +17,9 @@ class Comment extends Model
      * @var array
      */
     protected $primaryKey = 'uuid';
+
     public $incrementing = false;
-    
+
     protected $fillable = [
         'uuid',
         'user_id',
@@ -26,13 +27,14 @@ class Comment extends Model
         'comment',
         'published_at',
     ];
-    
+
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $keyType = 'string';
+
     protected $casts = [
         'id' => 'integer',
         'user_id' => 'integer',
