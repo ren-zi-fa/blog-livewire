@@ -2,26 +2,24 @@
 
 namespace Database\Factories;
 
+use App\Models\Comment;
+use App\Models\User;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
- */
 class CommentFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Comment::class;
+
+    public function definition()
     {
         return [
-            'uuid' => $this->faker->uuid(),
-            'user_id' => \App\Models\User::factory()->create()->uuid,
-            'post_id' => \App\Models\Post::factory()->create()->uuid,
-            'comment' => $this->faker->paragraph(),
-            'published_at' => $this->faker->optional()->dateTime(),
+            'uuid' => (string) Str::uuid(),
+            'user_id' => User::factory(), // Menggunakan factory User untuk mendapatkan user_id
+            'post_id' => Post::factory(), // Menggunakan factory Post untuk mendapatkan post_id
+            'comment' => $this->faker->paragraph(), // Komentar sebagai paragraf
+            'published_at' => $this->faker->boolean(80) ? now() : null, // 80% chance of being published
             'created_at' => now(),
             'updated_at' => now(),
         ];

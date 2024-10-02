@@ -4,21 +4,23 @@ namespace App\Livewire\Forms;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class UserForm extends Form
 {
-    #[Rule(['required', 'string', 'max:50'])]
+
+
+    #[Validate(['required', 'string', 'max:50'])]
     public $name;
 
-    #[Rule(['required', 'email'])]
+    #[Validate(['required', 'email'])]
     public $email;
 
-    #[Rule(['required', 'string', 'min:8'])]
+    #[Validate(['required', 'string', 'min:8'])]
     public $password;
 
-    #[Rule(['required', 'string'])]
+    #[Validate(['required', 'string'])]
     public $role;
 
     public function store()
@@ -31,6 +33,20 @@ class UserForm extends Form
 
         return $user;
     }
+    public function setUser($userUuid)
+    {
+        $this->user = $userUuid;
+        $this->name = $userUuid->name;
+        $this->email = $userUuid->email;
+    }
+    public User $user;
+    public function edit()
+     {
+        $validatedData = $this->validate([
+            'name' => ['required', 'string', 'max:50'],
+            'email' => ['required', 'email'],
+        ]);
 
-    public function delete() {}
+        $this->user->update($validatedData);
+     }
 }

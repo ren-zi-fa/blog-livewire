@@ -46,7 +46,11 @@
           @endforeach
 
           <td class="px-6 py-4">
-            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+            <button
+              wire:click="$dispatch('openModal', { component: 'user.edit-user', arguments: { user: '{{ $user->uuid }}' }})"
+              class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+              edit
+            </button>
           </td>
         </tr>
         @endforeach
@@ -56,13 +60,14 @@
   <div class="flex items-center py-2 px-5 gap-2">
     <label for="page">Per Page</label>
     <select id="page" wire:model.live='perPage'
-      class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-      <option selected value="10">10</option>
-      <option value="15">15</option>
+      class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 ">
       <option value="20">20</option>
       <option value="25">25</option>
       <option value="30">30</option>
     </select>
   </div>
-  {{$users->links( )}}
+  <div class="" wire:ignore>
+    {{$users->links('vendor/pagination/tailwind')}}
+
+  </div>
 </div>

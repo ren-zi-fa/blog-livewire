@@ -2,27 +2,24 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
- */
 class PostFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Post::class;
+
+    public function definition()
     {
         return [
-            'uuid' => $this->faker->uuid(),
-            'user_id' => \App\Models\User::factory()->create()->uuid,
-            'title' => $this->faker->sentence(),
-            'slug' => Str::slug($this->faker->sentence()),
-            'body' => $this->faker->paragraphs(3, true),
-            'published_at' => $this->faker->optional()->dateTime(),
+            'uuid' => (string) Str::uuid(),
+            'user_id' => User::factory(), // Menggunakan factory User untuk mendapatkan user_id
+            'title' => $this->faker->sentence(6, true), // Judul dengan 6 kata
+            'slug' => $this->faker->slug(),
+            'body' => $this->faker->paragraphs(3, true), // Teks paragraf dengan 3 kalimat
+            'published_at' => $this->faker->boolean(70) ? now() : null, // 70% chance of being published
             'created_at' => now(),
             'updated_at' => now(),
         ];

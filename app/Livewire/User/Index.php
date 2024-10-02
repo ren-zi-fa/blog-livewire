@@ -4,11 +4,12 @@ namespace App\Livewire\User;
 
 use App\Models\User;
 use Livewire\Component;
+use \Livewire\WithPagination;
 
 class Index extends Component
 {
 
-    use \Livewire\WithPagination;
+
     public $perPage;
     public $search = '';
 
@@ -24,12 +25,15 @@ class Index extends Component
         }
         $this->sortColumn = $column;
     }
+    use WithPagination;
+
+    public $listener = ['userModified' => 'render'];
     public function render()
     {
         return view('livewire.user.index', [
             'users' => User::search($this->search)->orderBy($this->sortColumn, $this->sortDirection)
                 ->with('roles')
-                ->paginate($this->perPage, ['*'], 'userPage'),
+                ->paginate($this->perPage, '*', 'userPage'),
         ]);
     }
 }
